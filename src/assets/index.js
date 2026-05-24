@@ -8,15 +8,15 @@ import menu from "./menu.svg";
 import close from "./close.svg";
 
 // Tech icons
-import python from "./tech/python.svg";
-import tensorflow from "./tech/tensorflow.svg";
-import pytorch from "./tech/pytorch.svg";
-import scikitlearn from "./tech/scikit-learn.svg";
-import pandas from "./tech/pandas.svg";
-import numpy from "./tech/numpy.svg";
-import matplotlib from "./tech/matplotlib.svg";
-import java from "./tech/java.svg";
-import csharp from "./tech/csharp.svg";
+import python from "./tech/python.png";
+import tensorflow from "./tech/tensorflow.png";
+import pytorch from "./tech/pytorch.png";
+import scikitlearn from "./tech/scikit-learn.png";
+import pandas from "./tech/pandas.png";
+import numpy from "./tech/numpy.png";
+import matplotlib from "./tech/matplotlib.png";
+import java from "./tech/java.png";
+import csharp from "./tech/csharp.png";
 import git from "./tech/git.png";
 
 // Timeline icons
