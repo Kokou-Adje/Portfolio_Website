@@ -1,4 +1,4 @@
-import React, { useRef, useMemo } from "react";
+import React, { useRef, useMemo, Suspense, useState, useEffect } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Preload } from "@react-three/drei";
 import * as THREE from "three";
@@ -8,7 +8,7 @@ const Neuron = ({ position, size = 0.03, color = "#692c94" }) => {
   useFrame((state) => {
     const t = state.clock.getElapsedTime();
     const scale = 1 + Math.sin(t * 2 + position[0] * 5 + position[1] * 3) * 0.2;
-    meshRef.current.scale.setScalar(scale);
+    if (meshRef.current) meshRef.current.scale.setScalar(scale);
   });
   return (
     <mesh ref={meshRef} position={position}>
@@ -27,7 +27,7 @@ const Connection = ({ start, end, pulseOffset = 0 }) => {
   useFrame((state) => {
     const t = state.clock.getElapsedTime();
     const opacity = 0.06 + Math.sin(t * 1.2 + pulseOffset) * 0.04;
-    lineRef.current.material.opacity = Math.max(0.02, opacity);
+    if (lineRef.current) lineRef.current.material.opacity = Math.max(0.02, opacity);
   });
   return (
     <line ref={lineRef} geometry={geometry}>
@@ -44,6 +44,7 @@ const Pulse = ({ start, end, speed = 0.3, offset = 0 }) => {
     const t = state.clock.getElapsedTime();
     const progress = ((t * speed + offset) % 1);
     const pos = startVec.clone().lerp(endVec, progress);
+    if (!meshRef.current) return;
     meshRef.current.position.copy(pos);
     const fade = Math.sin(progress * Math.PI);
     meshRef.current.material.opacity = fade * 0.6;
@@ -57,7 +58,7 @@ const Pulse = ({ start, end, speed = 0.3, offset = 0 }) => {
   );
 };
 
-const NeuralBrain = () => {
+const NeuralBrain = ({ isMobile }) => {
   const groupRef = useRef();
   const { neurons, connections, pulses } = useMemo(() => {
     const neurons = [];
@@ -66,8 +67,8 @@ const NeuralBrain = () => {
     const rng = (seed) => { let s = seed; return () => { s = (s * 16807) % 2147483647; return (s - 1) / 2147483646; }; };
     const random = rng(42);
 
-    // Spread nodes evenly across a sphere using Fibonacci distribution
-    const nodeCount = 55;
+    // Lighter on mobile: fewer nodes, fewer connections, fewer pulses
+    const nodeCount = isMobile ? 30 : 55;
     const radius = 1.1;
     const layerColors = ["#4a1d72", "#5a2d82", "#692c94", "#7b3fa7", "#8e52ba", "#a165cd"];
 
@@ -78,27 +79,29 @@ const NeuralBrain = () => {
       const y = radius * Math.sin(phi) * Math.sin(theta) + (random() - 0.5) * 0.1;
       const z = radius * Math.cos(phi) + (random() - 0.5) * 0.1;
 
-      // Color gradient based on vertical position
       const colorIndex = Math.floor(((y / radius) + 1) / 2 * (layerColors.length - 1));
       const color = layerColors[Math.min(colorIndex, layerColors.length - 1)];
 
       neurons.push({ position: [x, y, z], color, size: 0.01 + random() * 0.01 });
     }
 
-    // Connect nearby neurons (proximity-based, like ConnectionSphere)
+    const connectionThreshold = isMobile ? 0.55 : 0.65;
+    const connectionChance = isMobile ? 0.55 : 0.45;
+    const pulseChance = isMobile ? 0.9 : 0.75;
+
     for (let i = 0; i < neurons.length; i++) {
       for (let j = i + 1; j < neurons.length; j++) {
         const dx = neurons[i].position[0] - neurons[j].position[0];
         const dy = neurons[i].position[1] - neurons[j].position[1];
         const dz = neurons[i].position[2] - neurons[j].position[2];
         const dist = Math.sqrt(dx * dx + dy * dy + dz * dz);
-        if (dist < 0.65 && random() > 0.45) {
+        if (dist < connectionThreshold && random() > connectionChance) {
           connections.push({
             start: neurons[i].position,
             end: neurons[j].position,
             pulseOffset: random() * Math.PI * 2,
           });
-          if (random() > 0.75) {
+          if (random() > pulseChance) {
             pulses.push({
               start: neurons[i].position,
               end: neurons[j].position,
@@ -110,10 +113,11 @@ const NeuralBrain = () => {
       }
     }
     return { neurons, connections, pulses };
-  }, []);
+  }, [isMobile]);
 
   useFrame((state) => {
     const t = state.clock.getElapsedTime();
+    if (!groupRef.current) return;
     groupRef.current.rotation.y = t * 0.1;
     groupRef.current.position.y = Math.sin(t * 0.4) * 0.05;
   });
@@ -128,19 +132,36 @@ const NeuralBrain = () => {
 };
 
 const NeuralNetworkCanvas = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 768px)");
+    setIsMobile(mq.matches);
+    const handler = (e) => setIsMobile(e.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
+
   return (
     <Canvas
-      frameloop='always'
-      dpr={[1, 2]}
+      frameloop="always"
+      dpr={isMobile ? [1, 1.5] : [1, 2]}
       camera={{ position: [0, 0, 3.5], fov: 40 }}
-      gl={{ preserveDrawingBuffer: true, alpha: true }}
+      gl={{
+        preserveDrawingBuffer: false,
+        alpha: true,
+        powerPreference: isMobile ? "low-power" : "high-performance",
+        antialias: !isMobile,
+      }}
       style={{ background: "transparent" }}
     >
-      <ambientLight intensity={0.15} />
-      <pointLight position={[3, 3, 3]} intensity={0.3} color="#692c94" />
-      <pointLight position={[-3, -3, -3]} intensity={0.2} color="#b57edc" />
-      <NeuralBrain />
-      <Preload all />
+      <Suspense fallback={null}>
+        <ambientLight intensity={0.15} />
+        <pointLight position={[3, 3, 3]} intensity={0.3} color="#692c94" />
+        <pointLight position={[-3, -3, -3]} intensity={0.2} color="#b57edc" />
+        <NeuralBrain isMobile={isMobile} />
+        <Preload all />
+      </Suspense>
     </Canvas>
   );
 };
