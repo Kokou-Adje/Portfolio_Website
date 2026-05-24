@@ -181,7 +181,7 @@ const experiences = [
     company_name: "IBM (Coursera)",
     icon: certification,
     iconBg: "#E6DEDD",
-    date: "Expected Completion: December 2025",
+    date: "Status: In Progress",
     category: "Certifications",
     points: [
       "Six-course track covering supervised learning, unsupervised learning, deep learning, and time series.",
