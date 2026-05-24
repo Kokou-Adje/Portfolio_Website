@@ -97,8 +97,8 @@ const ProjectModal = ({ project, onClose }) => {
           </>
         )}
 
-        {/* GitHub link */}
-        <div className='mt-6 flex gap-4'>
+        {/* Links */}
+        <div className='mt-6 flex gap-4 flex-wrap'>
           <a
             href={project.source_code_link}
             target='_blank'
@@ -108,6 +108,16 @@ const ProjectModal = ({ project, onClose }) => {
             <img src={github} alt='github' className='w-5 h-5 object-contain' />
             <span className='text-white text-[14px] font-medium'>View Source Code</span>
           </a>
+          {project.live_demo_link && (
+            <a
+              href={project.live_demo_link}
+              target='_blank'
+              rel='noopener noreferrer'
+              className='flex items-center gap-2 bg-[#692c94] hover:bg-[#7b3fa7] px-5 py-2.5 rounded-lg transition-colors'
+            >
+              <span className='text-white text-[14px] font-medium'>View Live Demo →</span>
+            </a>
+          )}
         </div>
       </motion.div>
     </motion.div>
@@ -121,13 +131,14 @@ const ProjectCard = ({
   tags,
   image,
   source_code_link,
+  live_demo_link,
   details,
   onCardClick,
 }) => {
   return (
     <motion.div variants={fadeIn("up", "spring", index * 0.5, 0.75)}>
       <div
-        onClick={() => onCardClick({ name, description, tags, image, source_code_link, details })}
+        onClick={() => onCardClick({ name, description, tags, image, source_code_link, live_demo_link, details })}
         className='cursor-pointer'
       >
         <Tilt
