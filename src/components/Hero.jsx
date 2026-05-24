@@ -19,13 +19,13 @@ const Hero = () => {
             Hi, I'm <span className='text-[#692c94]'>Kokou</span>
           </h1>
           <p className={`${styles.heroSubText} mt-2 text-white-100`}>
-          I develop AI models, machine learning systems,  <br className='sm:block hidden' />
-          and intelligent applications
+          I build machine learning systems  <br className='sm:block hidden' />
+          for real-world problems
           </p>
           <p className='mt-4 text-secondary text-[16px] sm:text-[18px] max-w-lg leading-[28px]'>
-            Specializing in Computer Vision, Natural Language Processing, 
-            and Deep Learning. Passionate about leveraging advanced AI 
-            techniques to solve real-world problems.
+            Specializing in computer vision, NLP, and deep learning. Recent
+            work spans PCB defect detection at 0.983 mAP, real-time neural
+            network visualization, and 3D LIDAR mapping.
           </p>
         </div>
       </div>

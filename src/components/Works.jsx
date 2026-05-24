@@ -203,10 +203,8 @@ const Works = () => {
           variants={fadeIn("", "", 0.1, 1)}
           className='mt-3 text-secondary text-[17px] max-w-3xl leading-[30px]'
         >
-          Following projects showcases my skills and experience in
-          artificial intelligence and machine learning. Each project demonstrates
-          my ability to apply advanced AI techniques to solve real-world problems.
-          Click on any project to view detailed methodology, tools, and results.
+          Some projects across computer vision, deep learning, and robotics.
+          Click any card for methodology, tools, and results.
         </motion.p>
       </div>
 

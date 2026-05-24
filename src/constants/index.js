@@ -73,12 +73,12 @@ const services = [
   },
   {
     title: "Generative AI & LLMs",
-    icon: creator, // TODO: replace with dedicated icon
+    icon: creator,
     description: "Working with large language models, prompt engineering, retrieval-augmented generation (RAG), and fine-tuning transformers for domain-specific tasks.",
   },
   {
     title: "MLOps",
-    icon: web, // TODO: replace with dedicated icon
+    icon: web,
     description: "Deploying machine learning models to production, building reproducible training pipelines, and monitoring model performance over time.",
   },
 ];
