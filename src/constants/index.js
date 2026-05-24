@@ -44,42 +44,42 @@ const services = [
   {
     title: "Machine Learning",
     icon: web,
-    description: "Building predictive models using supervised and unsupervised learning, ensemble methods, and model evaluation techniques.",
+    description: "Classical ML for prediction and classification. Comfortable with the standard toolkit and the trade-offs between models.",
   },
   {
     title: "Deep Learning",
     icon: mobile,
-    description: "Designing neural network architectures including CNNs, RNNs, and transformers for complex pattern recognition tasks.",
+    description: "Neural networks for vision, language, and sequence tasks. CNNs, RNNs, transformers, and the training tricks that make them work.",
   },
   {
     title: "Computer Vision",
     icon: backend,
-    description: "Developing image processing pipelines for object detection, image segmentation, and visual classification systems.",
+    description: "Object detection, segmentation, and image classification. Recently shipped a YOLOv8 PCB defect detector at 0.983 mAP.",
   },
   {
     title: "Natural Language Processing",
     icon: creator,
-    description: "Building text analysis systems for sentiment classification, summarization, and machine translation.",
+    description: "Text classification, summarization, translation. Both classical methods and modern transformer-based approaches.",
   },
   {
     title: "Reinforcement Learning",
     icon: mobile,
-    description: "Training intelligent agents using reward-based learning, Deep Q-Networks, and exploration strategies.",
+    description: "Training agents with Q-learning, Deep Q-Networks, and policy gradients. Reward shaping and the exploration problem.",
   },
   {
     title: "AI Ethics",
     icon: backend,
-    description: "Analyzing algorithmic fairness, detecting bias in AI systems, and implementing responsible AI practices.",
+    description: "Fairness, bias detection, and what happens when models meet the real world. Hiring, lending, criminal justice.",
   },
   {
     title: "Generative AI & LLMs",
     icon: creator,
-    description: "Working with large language models, prompt engineering, retrieval-augmented generation (RAG), and fine-tuning transformers for domain-specific tasks.",
+    description: "Prompt engineering, RAG, and fine-tuning. Building useful things on top of language models.",
   },
   {
     title: "MLOps",
     icon: web,
-    description: "Deploying machine learning models to production, building reproducible training pipelines, and monitoring model performance over time.",
+    description: "Getting models out of notebooks and into production. Training pipelines, deployment, monitoring.",
   },
 ];
 
@@ -97,7 +97,7 @@ const technologies = [
     icon: pytorch,
   },
   {
-    name: "Scikit-learn",
+    name: "scikit-learn",
     icon: scikitlearn,
   },
   {
@@ -121,7 +121,7 @@ const technologies = [
     icon: csharp,
   },
   {
-    name: "Git",
+    name: "git",
     icon: git,
   },
 ];
@@ -137,13 +137,13 @@ const experiences = [
     category: "Education",
     points: [
       "Relevant Coursework:",
-      "Machine Learning: Built classification and regression pipelines from scratch — kNN, decision trees, SVMs, ensemble methods (random forests, gradient boosting). Studied cross-validation, hyperparameter tuning, regularization, and bias-variance tradeoffs. Practiced model evaluation with confusion matrices, ROC-AUC, precision/recall, and F1 score.",
-      "Deep Learning: Implemented neural networks from first principles — forward propagation, backpropagation, gradient descent. Worked with CNNs for image tasks, RNNs and LSTMs for sequence modeling, and transformers for attention-based architectures. Hands-on experience with PyTorch and TensorFlow, including transfer learning from pretrained models.",
-      "Machine Vision: Studied the full computer vision pipeline — image filtering, feature extraction (SIFT, HOG), object detection (YOLO, R-CNN), and semantic segmentation. Final project trained YOLOv8 for PCB defect detection on the DeepPCB benchmark, achieving 0.983 mAP@0.5.",
-      "Natural Language Processing: Built end-to-end NLP pipelines covering tokenization, embeddings (Word2Vec, GloVe), and transformer-based language models. Explored sentiment analysis, named entity recognition, text summarization, and machine translation. Worked with both classical statistical methods and modern LLM-based approaches.",
-      "Reinforcement Learning: Implemented value-based methods (Q-learning, Deep Q-Networks) and policy-gradient algorithms. Studied exploration-exploitation tradeoffs, reward shaping, and the role of experience replay. Trained agents on classical control problems and analyzed convergence behavior.",
-      "AI Ethics: Examined fairness, accountability, and transparency in AI systems. Studied algorithmic bias (demographic parity, equalized odds), interpretability methods (LIME, SHAP), and the societal impact of large-scale AI deployment. Discussed real-world case studies in hiring, lending, and criminal justice.",
-      "Data Warehousing & Mining: Designed dimensional models and ETL pipelines. Applied clustering, association rules, and anomaly detection to large datasets.",
+      "Machine Learning: Built classifiers and regressors from the ground up. kNN, decision trees, SVMs, random forests, gradient boosting. A lot of time spent on what to do when the model overfits and how to tell which evaluation metric to trust.",
+      "Deep Learning: Wrote my first neural networks in plain NumPy before touching PyTorch. CNNs for images, RNNs for sequences, transformers once we got to attention. Transfer learning was where things started to feel practical.",
+      "Machine Vision: Image filtering, feature extraction, object detection, segmentation. Final project was a YOLOv8 model for catching defects on circuit boards. Got it to 0.983 mAP on the DeepPCB benchmark.",
+      "Natural Language Processing: Tokenization and embeddings up through transformer-based language models. Sentiment, NER, summarization, translation. Compared the classical statistical stuff against modern LLM approaches on the same tasks.",
+      "Reinforcement Learning: Q-learning, Deep Q-Networks, policy gradients. The exploration vs exploitation trade-off is more interesting than it sounds. Trained agents on the usual suite of control problems.",
+      "AI Ethics: When models meet the real world, things get messy. Worked through fairness metrics, interpretability tools like LIME and SHAP, and case studies in hiring and lending.",
+      "Data Warehousing & Mining: Dimensional modeling, ETL pipelines, clustering, anomaly detection. The practical side of working with large datasets.",
     ],
   },
   {
@@ -155,11 +155,11 @@ const experiences = [
     category: "Education",
     points: [
       "Relevant Coursework:",
-      "Programming Fundamentals: Object-oriented programming and algorithm design in Python, Java, and C#. Built console applications, GUI tools, and class-based systems from scratch.",
-      "Data Structures and Algorithms: Implemented arrays, linked lists, stacks, queues, trees, graphs, and hash tables. Analyzed time and space complexity of sorting, searching, and graph traversal algorithms (BFS, DFS, Dijkstra).",
-      "Databases: Designed relational schemas and wrote complex queries in SQL, SQL Server, MySQL, MongoDB, and PostgreSQL. Compared SQL vs NoSQL trade-offs across consistency, scalability, and query flexibility.",
-      "Software Engineering: Practiced the full software development lifecycle — requirements gathering, Agile sprints, code reviews, and version control with Git/GitHub. Worked on team projects with branching strategies and pull request workflows.",
-      "Honors: Dean's List Spring 2024 · President's List Summer 2023.",
+      "Programming Fundamentals: OOP in Python, Java, and C#. Console apps, GUI tools, the usual progression.",
+      "Data Structures and Algorithms: Arrays through trees and graphs, sorting and searching, BFS, DFS, Dijkstra. Complexity analysis on everything.",
+      "Databases: Wrote a lot of SQL across MySQL, PostgreSQL, and SQL Server. Also worked with MongoDB enough to have opinions about when NoSQL actually helps and when it doesn't.",
+      "Software Engineering: Agile sprints, code reviews, Git, pull requests. Team projects where the hardest part wasn't the code.",
+      "Honors: Dean's List Spring 2024, President's List Summer 2023.",
     ],
   },
   {
@@ -170,22 +170,22 @@ const experiences = [
     date: "Graduated July 2021 · GPA 3.6",
     category: "Education",
     points: [
-      "Specialization in Computer Programming.",
-      "Built foundations in structured and object-oriented programming through Java and C#. Completed coursework in introductory database design, networking concepts, and web development fundamentals.",
-      "Earned the Java Programmer Certificate (May 2021) and C# Programmer Certificate (December 2020) as part of the program.",
+      "Computer Programming specialization.",
+      "First serious programming through Java and C#. Some database design, networking basics, and intro web development on the side.",
+      "Picked up the Java Programmer Certificate (May 2021) and C# Programmer Certificate (December 2020) along the way.",
     ],
   },
   // --- CERTIFICATIONS ---
   {
     title: "IBM Machine Learning Professional Certificate",
-    company_name: "IBM — Coursera",
+    company_name: "IBM (Coursera)",
     icon: certification,
     iconBg: "#E6DEDD",
     date: "Expected Completion: December 2025",
     category: "Certifications",
     points: [
-      "Comprehensive professional certificate covering machine learning concepts and applications.",
-      "Hands-on projects using industry-standard tools and frameworks.",
+      "Six-course track covering supervised learning, unsupervised learning, deep learning, and time series.",
+      "Each course includes a capstone project graded against industry rubrics.",
     ],
   },
   {
@@ -196,7 +196,7 @@ const experiences = [
     date: "Completed: May 2021",
     category: "Certifications",
     points: [
-      "Certified in Java programming fundamentals and application development.",
+      "Java fundamentals and application development.",
     ],
   },
   {
@@ -207,7 +207,7 @@ const experiences = [
     date: "Completed: December 2020",
     category: "Certifications",
     points: [
-      "Certified in C# programming and .NET application development.",
+      "C# programming and .NET application development.",
     ],
   },
 ];
@@ -216,7 +216,7 @@ const projects = [
   {
     name: "Vision-Scan: PCB Defect Detection",
     description:
-      "Deep learning pipeline for automated PCB defect inspection using YOLOv8. Detects six defect classes on the DeepPCB benchmark at 0.983 mAP@0.5 and 99 FPS on a T4 GPU.",
+      "YOLOv8 trained to spot six kinds of defects on printed circuit boards. Hits 0.983 mAP@0.5 on the DeepPCB benchmark and runs at 99 FPS on a T4 GPU.",
     tags: [
       { name: "python", color: "blue-text-gradient" },
       { name: "yolov8", color: "green-text-gradient" },
@@ -225,15 +225,15 @@ const projects = [
     image: project_vision_scan,
     source_code_link: "https://github.com/Kokou-Adje/vision-scan",
     details: {
-      methodology: "Three-stage pipeline: synthetic augmentation (rotation, flipping, brightness shifts, Gaussian noise/blur) expands the 1,050-image training set roughly four-fold with bounding-box-aware transforms; YOLOv8s transfer-learning from COCO-pretrained weights with AdamW, FP16 mixed precision, and cosine LR decay; ONNX export with opset 12 and graph simplification for portable CPU/CUDA/OpenVINO deployment. Final project for CS 7367 Machine Vision at Kennesaw State.",
+      methodology: "Three stages. First, expand the 1,050-image training set roughly fourfold using bounding-box-aware augmentation: rotation, flipping, brightness shifts, Gaussian noise and blur. Second, fine-tune YOLOv8s from COCO-pretrained weights with AdamW, FP16 mixed precision, and cosine LR decay. Third, export to ONNX (opset 12) with graph simplification so the model runs the same on CPU, CUDA, or OpenVINO. Final project for CS 7367 Machine Vision.",
       tools: ["Python 3.12", "PyTorch 2.10", "Ultralytics YOLOv8", "Albumentations", "ONNX Runtime", "OpenCV"],
-      results: "0.983 mAP@0.5, 0.627 mAP@0.5:0.95, mean precision 0.979, mean recall 0.948, 99.3 FPS on NVIDIA T4. Per-class mAP ranged 0.965 (short) to 0.993 (pin-hole). Residual error dominated by missed detection rather than class confusion.",
+      results: "0.983 mAP@0.5, 0.627 mAP@0.5:0.95, 0.979 precision, 0.948 recall, 99.3 FPS on NVIDIA T4. Per-class mAP ranged from 0.965 (short) to 0.993 (pin-hole). Most residual error was missed detection, not class confusion.",
     },
   },
   {
     name: "GradientMonitoring: Neural Network Visualizer",
     description:
-      "Interactive Streamlit app that visualizes how neural networks learn through backpropagation. Real-time decision boundary evolution, weight updates, and loss curves on XOR, Circles, and Moons datasets.",
+      "Streamlit app that lets you watch a neural network learn in real time. Decision boundary, weights, and loss curve all update as the model trains on XOR, Circles, and Moons.",
     tags: [
       { name: "python", color: "blue-text-gradient" },
       { name: "streamlit", color: "green-text-gradient" },
@@ -242,15 +242,15 @@ const projects = [
     image: project_gradient_monitoring,
     source_code_link: "https://github.com/Kokou-Adje/deep-learning-teaching-tool",
     details: {
-      methodology: "Built a from-scratch neural network in NumPy implementing forward propagation, sigmoid activations, binary cross-entropy loss, and full backpropagation with gradient descent weight updates. Wired the network into a Streamlit UI that re-renders the decision boundary and loss curve after each training step, letting users adjust learning rate (0.01–1.0), hidden layer size (2–12 neurons), and epochs per step. Final project for CS7050 Data Warehousing & Mining at Kennesaw State.",
+      methodology: "Wrote the network in pure NumPy: forward pass with sigmoid activations, binary cross-entropy loss, and full backprop with gradient descent. Then wired it into Streamlit so the decision boundary and loss curve re-render after every training step. Users tune learning rate (0.01 to 1.0), hidden layer size (2 to 12 neurons), and epochs per step. Final project for CS7050 Data Warehousing & Mining.",
       tools: ["Python", "Streamlit", "NumPy", "Matplotlib"],
-      results: "Solves XOR with as few as 2 hidden neurons, learns radial boundaries on Circles, and fits the non-convex Moons dataset. Decision boundary and loss curve update live during training, making the relationship between hyperparameters and convergence visible to students.",
+      results: "Solves XOR with as few as two hidden neurons, learns the radial boundary on Circles, and fits the non-convex Moons set. Watching the boundary move during training makes the link between hyperparameters and convergence obvious in a way that static plots never quite do.",
     },
   },
   {
     name: "Teaching Tools for Machine Learning (Capstone)",
     description:
-      "Web-based platform for interactive ML algorithm visualization. Capstone project for AI 7993 AI Capstone at Kennesaw State, supervised by Prof. Arthur Choi.",
+      "Web platform for visualizing how ML algorithms work. Capstone for AI 7993 at Kennesaw State, supervised by Prof. Arthur Choi.",
     tags: [
       { name: "python", color: "blue-text-gradient" },
       { name: "react", color: "green-text-gradient" },
@@ -260,15 +260,15 @@ const projects = [
     source_code_link: "https://github.com/Kokou-Adje/Teaching-Tools-For-Machine-Learning",
     live_demo_link: "https://kokou-adje.github.io/Teaching-Tools-For-Machine-Learning/",
     details: {
-      methodology: "Served as Team Leader, coordinating scope, architecture, and delivery across the project lifecycle. Designed a microservices architecture with a React frontend, Kong API gateway, Node.js user management, a Python algorithm execution service (scikit-learn, pandas, NumPy, Flask), a visualization service (matplotlib, seaborn), and MongoDB storage. Followed a hybrid Agile methodology combining Kanban and Scrum. Produced full engineering documentation across the lifecycle: Project Plan, Software Requirements Specification (SRS), Software Design Document (SDD), Development Document, and Software Test Plan/Report. First release implements linear regression on real weather data; planned extensions cover kNN, K-means, SVM, logistic regression, and hierarchical clustering. Capstone for AI 7993 AI Capstone, Spring 2025.",
+      methodology: "I was the Team Leader, which meant scope, architecture, and delivery sat with me. The system design is microservices: React frontend, Kong API gateway, Node.js for user management, a Python service running scikit-learn for the algorithms, a visualization service using matplotlib and seaborn, and MongoDB for storage. Process-wise, we ran a Kanban-flavored Agile loop. The course also required formal documentation, so I produced the Project Plan, SRS, SDD, Development Document, and Software Test Plan and Report. The shipped v1 covers linear regression on weather data. Next algorithms in the pipeline: kNN, K-means, SVM, logistic regression, hierarchical clustering.",
       tools: ["React", "Node.js", "Python", "Flask", "scikit-learn", "pandas", "NumPy", "matplotlib", "seaborn", "MongoDB", "Kong", "Streamlit"],
-      results: "Released linear regression visualizer as v1 of a broader ML teaching suite. Full software design and test documentation delivered with the final project package. Architecture documented to support extension to additional algorithms without restructuring the core app.",
+      results: "Linear regression visualizer shipped as v1 of the teaching suite. Full design and test documentation delivered alongside the code. The architecture is set up so new algorithms drop in without restructuring the core.",
     },
   },
   {
     name: "Graph SLAM with Modified Keyframe Tuning",
     description:
-      "Extended the hdl_graph_slam ROS package with modified keyframe parameters for 3D LIDAR-based SLAM. Coursework exploration of pose graph optimization, scan matching, and loop closure constraints.",
+      "Forked the hdl_graph_slam ROS package and changed how keyframes are selected during 3D LIDAR mapping. Coursework dive into pose graph optimization, scan matching, and loop closure.",
     tags: [
       { name: "cpp", color: "blue-text-gradient" },
       { name: "ros", color: "green-text-gradient" },
@@ -277,9 +277,9 @@ const projects = [
     image: project_graph_slam,
     source_code_link: "https://github.com/Kokou-Adje/CS7075-hdl-graph-slam",
     details: {
-      methodology: "Built on top of the open-source hdl_graph_slam package (BSD-2-Clause). Modified keyframe delta and angular thresholds to study their effect on map quality and loop closure behavior. The underlying pipeline runs four ROS nodelets: prefiltering for downsampling, scan-matching odometry between consecutive LIDAR frames, RANSAC floor-plane detection, and pose graph optimization with constraints from odometry, loop closures, GPS, IMU, and floor planes. CS 7075 coursework at Kennesaw State.",
+      methodology: "Built on the open-source hdl_graph_slam package (BSD-2-Clause). I changed the keyframe delta and angular thresholds, then studied how those choices affect map quality and loop closure. The pipeline runs four ROS nodelets: prefiltering and downsampling, scan-matching odometry between consecutive LIDAR frames, RANSAC floor-plane detection, and a pose graph optimizer that fuses odometry, loop closures, GPS, IMU, and floor planes. CS 7075 coursework.",
       tools: ["C++", "ROS", "PCL", "g2o", "NDT/GICP scan matching", "Velodyne LIDAR"],
-      results: "Tuned keyframe parameters to balance map accuracy against compute cost. Documented the trade-offs between dense keyframe sampling (accurate but slow) and sparse sampling (fast but prone to drift) on indoor and outdoor bag files.",
+      results: "Mapped the trade-off between dense keyframe sampling (accurate but slow) and sparse sampling (fast but drift-prone) on indoor and outdoor bag files. Pinned down a setting that holds up well in both regimes.",
     },
   },
 ];
