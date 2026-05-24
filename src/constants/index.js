@@ -133,7 +133,7 @@ const experiences = [
     company_name: "Kennesaw State University",
     icon: education,
     iconBg: "#383E56",
-    date: "September 2024 — May 2026 · GPA 3.7",
+    date: "Graduated May 2026 · GPA 3.7",
     category: "Education",
     points: [
       "Relevant Coursework:",
