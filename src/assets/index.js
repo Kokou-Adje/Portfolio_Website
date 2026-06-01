@@ -28,7 +28,11 @@ import project from "./company/project.svg";
 import project_vision_scan from "./project1_pcb_detection.png";
 import project_gradient_monitoring from "./project2_Neural_Network_Visualizer.png";
 import project_ttml from "./project3_ml_teaching_tool.png";
-import project_graph_slam from "./project4_3d_lidar_mapping.png";
+import project_pneumonia_cnn from "./project5_pneumonia_cnn.png";
+import project_diabetic_retinopathy from "./project6_diabetic_retinopathy.png";
+import project_knn_digits from "./project7_knn_digits.png";
+import project_naive_bayes from "./project8_naive_bayes.png";
+import project_ragnosis from "./project9_ragnosis.png";
 
 export {
   logo,
@@ -55,5 +59,9 @@ export {
   project_vision_scan,
   project_gradient_monitoring,
   project_ttml,
-  project_graph_slam,
+  project_pneumonia_cnn,
+  project_diabetic_retinopathy,
+  project_knn_digits,
+  project_naive_bayes,
+  project_ragnosis,
 };

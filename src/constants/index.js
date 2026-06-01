@@ -18,7 +18,11 @@ import {
   project_vision_scan,
   project_gradient_monitoring,
   project_ttml,
-  project_graph_slam,
+  project_pneumonia_cnn,
+  project_diabetic_retinopathy,
+  project_knn_digits,
+  project_naive_bayes,
+  project_ragnosis,
 } from "../assets";
 
 export const navLinks = [
@@ -142,7 +146,7 @@ const experiences = [
       "Neural Networks and Deep Learning: Wrote my first neural networks in plain NumPy before touching PyTorch. CNNs for images, RNNs for sequences, transformers once we got to attention. GANs at the end. Transfer learning was where things started to feel practical.",
       "Machine Vision: Image filtering, feature extraction, edge and corner detection, camera models, 2D/3D geometry, segmentation, optical flow, stereo vision, structure from motion. Final project was a YOLOv8 model for catching defects on circuit boards. Got it to 0.983 mAP on the DeepPCB benchmark.",
       "Natural Language Processing: Tokenization and embeddings up through transformer-based language models. Regex, n-grams, WordNet, HMMs, POS tagging, NER, sentiment, summarization, machine translation, question answering. Compared the classical statistical stuff against modern LLM approaches on the same tasks. Built with Python and spaCy.",
-      "AI & Robotics: Perception, sensors, actuators. SLAM, localization, mapping, navigation, path planning. PID control, filtering and estimation, reinforcement learning. Built in ROS. This is also where my Graph SLAM project lived.",
+      "AI & Robotics: Perception, sensors, actuators. SLAM, localization, mapping, navigation, path planning. PID control, filtering and estimation, reinforcement learning. Built in ROS.",
       "Data Warehousing and Mining: Linear and logistic regression, decision trees, hierarchical clustering, Naive Bayes, expectation-maximization, topic models. Final project was a Streamlit-based neural network visualizer (see GradientMonitoring below). Also got a brief intro to quantum ML at the end of the semester.",
       "Big Data Analytics: MapReduce, Hadoop, Apache Spark. SVMs and random forests at terabyte scale on commodity clusters. The point where you stop thinking about algorithms and start thinking about partitioning, shuffling, and what the network is doing.",
       "AI Ethics: When models meet the real world, things get messy. Worked through ethical frameworks, fairness metrics, interpretability tools like LIME and SHAP, data governance, privacy, informed consent, and case studies in hiring and lending. Finished CITI training in Biomedical, Behavioral, and AI Human Subject Protections.",
@@ -253,7 +257,7 @@ const projects = [
   {
     name: "Teaching Tools for Machine Learning (Capstone)",
     description:
-      "Web platform for visualizing how ML algorithms work. Capstone for AI 7993 at Kennesaw State, supervised by Prof. Arthur Choi.",
+      "Web platform for visualizing how ML algorithms work. Capstone for AI CS 7993 at Kennesaw State, supervised by Prof. Arthur Choi.",
     tags: [
       { name: "python", color: "blue-text-gradient" },
       { name: "react", color: "green-text-gradient" },
@@ -269,20 +273,88 @@ const projects = [
     },
   },
   {
-    name: "Graph SLAM with Modified Keyframe Tuning",
+    name: "Pneumonia Detection from Chest X-Rays",
     description:
-      "Forked the hdl_graph_slam ROS package and changed how keyframes are selected during 3D LIDAR mapping. Coursework dive into pose graph optimization, scan matching, and loop closure.",
+      "DenseNet-121 transfer learning to classify chest X-rays as normal or pneumonia, paired with a Streamlit app for live predictions. About 88% accuracy and 0.95 ROC-AUC, with balanced sensitivity and specificity.",
     tags: [
-      { name: "cpp", color: "blue-text-gradient" },
-      { name: "ros", color: "green-text-gradient" },
-      { name: "slam", color: "pink-text-gradient" },
+      { name: "tensorflow", color: "blue-text-gradient" },
+      { name: "transfer-learning", color: "green-text-gradient" },
+      { name: "medical-imaging", color: "pink-text-gradient" },
     ],
-    image: project_graph_slam,
-    source_code_link: "https://github.com/Kokou-Adje/CS7075-hdl-graph-slam",
+    image: project_pneumonia_cnn,
+    source_code_link: "https://github.com/Kokou-Adje/pneumonia-detection-cnn",
     details: {
-      methodology: "Built on the open-source hdl_graph_slam package (BSD-2-Clause). I changed the keyframe delta and angular thresholds, then studied how those choices affect map quality and loop closure. The pipeline runs four ROS nodelets: prefiltering and downsampling, scan-matching odometry between consecutive LIDAR frames, RANSAC floor-plane detection, and a pose graph optimizer that fuses odometry, loop closures, GPS, IMU, and floor planes. CS 7075 coursework.",
-      tools: ["C++", "ROS", "PCL", "g2o", "NDT/GICP scan matching", "Velodyne LIDAR"],
-      results: "Mapped the trade-off between dense keyframe sampling (accurate but slow) and sparse sampling (fast but drift-prone) on indoor and outdoor bag files. Pinned down a setting that holds up well in both regimes.",
+      methodology: "Started as a from-scratch CNN for the course, then upgraded to DenseNet-121 transfer learning, which performed far better on a small dataset. Images are 224x224 RGB run through DenseNet's preprocessing; the ImageNet-pretrained backbone acts as a feature extractor with a new classification head on top. Balanced class weights handle the dataset's imbalance (pneumonia outnumbers normal ~2.7 to 1) so the model doesn't ignore the rarer normal class. Trained with Adam, binary cross-entropy, early stopping, and a learning-rate scheduler. A Streamlit app loads the trained model for live predictions. DenseNet-121 was a deliberate choice: it's the same architecture as CheXNet, the radiologist-level pneumonia model.",
+      tools: ["Python", "TensorFlow", "Keras", "DenseNet-121", "scikit-learn", "Streamlit"],
+      results: "About 88% test accuracy and 0.95 ROC-AUC on the Kaggle Chest X-Ray dataset. Class weighting lifted normal-case recall from 0.55 (the original from-scratch CNN) to 0.81 while keeping pneumonia recall at 0.93 — a far more balanced, trustworthy classifier than the first version.",
+    },
+  },
+  {
+    name: "Diabetic Retinopathy Detection",
+    description:
+      "Fine-tuned a ResNet18 to detect diabetic retinopathy in retinal fundus images using transfer learning. Reaches 84.6% accuracy and 91.2% sensitivity on the held-out test set.",
+    tags: [
+      { name: "pytorch", color: "blue-text-gradient" },
+      { name: "transfer-learning", color: "green-text-gradient" },
+      { name: "medical-imaging", color: "pink-text-gradient" },
+    ],
+    image: project_diabetic_retinopathy,
+    source_code_link: "https://github.com/Kokou-Adje/diabetic-retinopathy-transfer-learning",
+    details: {
+      methodology: "Used transfer learning rather than training from scratch, since the dataset is small. Started from a ResNet18 pretrained on ImageNet, replaced the final layer with a 2-class head, and fine-tuned on retinal images from the IDRiD dataset (grade 0 as NonDR, grades 3-4 as DR). Images resized to 224x224, normalized with ImageNet statistics, with random horizontal flips for augmentation. Trained with SGD (lr 0.001, momentum 0.9), a step LR scheduler, and cross-entropy loss; kept the best-accuracy epoch. The code swaps in AlexNet, VGG16, or GoogLeNet by changing one list. Project for the graduate machine learning course.",
+      tools: ["Python", "PyTorch", "torchvision", "ResNet18", "scikit-learn", "Matplotlib"],
+      results: "84.6% accuracy, 91.2% sensitivity (recall on DR), and 77.4% specificity. The model catches most disease cases while being more cautious on healthy eyes, which is the right balance for a screening tool where a missed case is costlier than a false alarm.",
+    },
+  },
+  {
+    name: "Handwritten Digit Recognition (KNN)",
+    description:
+      "K-Nearest Neighbors built from scratch to recognize handwritten digits, with k chosen by cross-validation. 98.7% accuracy, matching scikit-learn on every test image.",
+    tags: [
+      { name: "python", color: "blue-text-gradient" },
+      { name: "knn", color: "green-text-gradient" },
+      { name: "computer-vision", color: "pink-text-gradient" },
+    ],
+    image: project_knn_digits,
+    source_code_link: "https://github.com/Kokou-Adje/knn-digit-recognition",
+    details: {
+      methodology: "Implemented KNN directly in NumPy: Euclidean distance from each test image to every training image, then a majority vote of the k nearest labels. Pixel values are scaled to [0,1] and the data is split 70/30 with stratification. Crucially, k is chosen by 5-fold cross-validation on the training set alone (testing k from 1 to 15), never touching the test set, so the reported accuracy is honest. The from-scratch model is then validated against scikit-learn's KNeighborsClassifier on the same split.",
+      tools: ["Python", "NumPy", "scikit-learn", "Matplotlib"],
+      results: "Cross-validation selected k=1, and the model scored 98.7% on the held-out test set (533 of 540 digits correct). The from-scratch and scikit-learn implementations agreed on 100% of test images, confirming the hand-written distance and voting logic is correct. The few misclassified digits are genuinely ambiguous.",
+    },
+  },
+  {
+    name: "Naive Bayes Cancer Classifier",
+    description:
+      "Gaussian Naive Bayes from scratch with 5-fold cross-validation and ROC analysis on the Wisconsin Breast Cancer dataset. Around 93% mean accuracy across folds.",
+    tags: [
+      { name: "python", color: "blue-text-gradient" },
+      { name: "naive-bayes", color: "green-text-gradient" },
+      { name: "machine-learning", color: "pink-text-gradient" },
+    ],
+    image: project_naive_bayes,
+    source_code_link: "https://github.com/Kokou-Adje/naive-bayes-breast-cancer",
+    details: {
+      methodology: "Modeled each feature as a Gaussian per class and combined the class prior with per-feature likelihoods using Bayes' theorem. Log-probabilities are summed rather than multiplying raw probabilities, since multiplying 30 small numbers underflows to zero. Evaluated two ways: a single stratified 70/30 split and 5-fold stratified cross-validation, the more honest estimate since every sample is tested exactly once. ROC analysis summarizes the sensitivity/specificity trade-off across thresholds.",
+      tools: ["Python", "NumPy", "scikit-learn", "Matplotlib"],
+      results: "94.0% accuracy on the holdout split and roughly 93.3% mean across the five folds (per-fold: 87.0, 95.1, 95.1, 94.3, 95.1%). The spread across folds is a reminder that a single train/test split can flatter or punish a model depending on which samples land where.",
+    },
+  },
+  {
+    name: "RAGnosis — Chest X-Ray Triage Assistant",
+    description:
+      "A chest X-ray triage assistant pairing a multi-label DenseNet-121 classifier with retrieval-augmented report generation grounded in ACR and Fleischner Society clinical guidelines. AUC 0.84 on NIH ChestX-ray14.",
+    tags: [
+      { name: "pytorch", color: "blue-text-gradient" },
+      { name: "rag", color: "green-text-gradient" },
+      { name: "medical-imaging", color: "pink-text-gradient" },
+    ],
+    image: project_ragnosis,
+    source_code_link: "https://github.com/Kokou-Adje/ragnosis",
+    details: {
+      methodology: "Two components working together. First, a multi-label DenseNet-121 classifies findings across the NIH ChestX-ray14 dataset, where a single image can carry several conditions at once. Second, the classifier's outputs drive a retrieval-augmented generation pipeline that drafts a structured triage report, retrieving relevant passages from ACR Appropriateness Criteria and Fleischner Society guidelines so recommendations are grounded in real clinical sources rather than free-form model output.",
+      tools: ["Python", "PyTorch", "DenseNet-121", "Retrieval-Augmented Generation", "Vector database", "LLM"],
+      results: "AUC 0.84 across multi-label findings on NIH ChestX-ray14. Pairing the classifier with guideline-grounded retrieval keeps the generated reports tied to recognized clinical standards, which is the difference between a model that predicts and an assistant a clinician could actually reason with.",
     },
   },
 ];
