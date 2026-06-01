@@ -282,7 +282,7 @@ const projects = [
       { name: "medical-imaging", color: "pink-text-gradient" },
     ],
     image: project_pneumonia_cnn,
-    source_code_link: "https://github.com/Kokou-Adje/pneumonia-detection-cnn",
+    source_code_link: "https://github.com/Kokou-Adje/pneumonia-detection-densenet121",
     details: {
       methodology: "Started as a from-scratch CNN for the course, then upgraded to DenseNet-121 transfer learning, which performed far better on a small dataset. Images are 224x224 RGB run through DenseNet's preprocessing; the ImageNet-pretrained backbone acts as a feature extractor with a new classification head on top. Balanced class weights handle the dataset's imbalance (pneumonia outnumbers normal ~2.7 to 1) so the model doesn't ignore the rarer normal class. Trained with Adam, binary cross-entropy, early stopping, and a learning-rate scheduler. A Streamlit app loads the trained model for live predictions. DenseNet-121 was a deliberate choice: it's the same architecture as CheXNet, the radiologist-level pneumonia model.",
       tools: ["Python", "TensorFlow", "Keras", "DenseNet-121", "scikit-learn", "Streamlit"],
