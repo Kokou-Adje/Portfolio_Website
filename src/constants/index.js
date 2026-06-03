@@ -23,6 +23,7 @@ import {
   project_knn_digits,
   project_naive_bayes,
   project_ragnosis,
+  project_cyber_intrusion,
 } from "../assets";
 
 export const navLinks = [
@@ -341,7 +342,25 @@ const projects = [
     },
   },
   {
+    name: "Network Intrusion Detection",
+    description:
+      "Benchmarking a Random Forest, a 1D-CNN, and a Transformer to flag network attacks on CIC-IDS2017. The honest finding: the classical Random Forest wins, at 99.8% accuracy with a 0.001 false-positive rate.",
+    tags: [
+      { name: "scikit-learn", color: "blue-text-gradient" },
+      { name: "tensorflow", color: "green-text-gradient" },
+      { name: "cybersecurity", color: "pink-text-gradient" },
+    ],
+    image: project_cyber_intrusion,
+    source_code_link: "https://github.com/Kokou-Adje/cyber-intrusion-detection",
+    details: {
+      methodology: "Per-flow classification of ~2.5M CIC-IDS2017 network flows into nine traffic categories. The pipeline is built to be defensible: identifier columns (IPs, ports, timestamps) are dropped so the model learns behavior rather than memorizing addresses, and the scaler is fit on the training split only to avoid leakage. Three models compete — a Random Forest baseline, a 1D-CNN, and a Transformer — all trained with balanced class weights to counter the heavily benign-dominated data (Heartbleed has only 11 samples). Evaluation reports per-class recall, macro-averaged F1, and a dedicated attack false-positive rate, because accuracy alone is misleading on an 80%-benign dataset. Deep models were trained on a Kaggle GPU.",
+      tools: ["Python", "scikit-learn", "TensorFlow", "Keras", "Streamlit", "NumPy", "pandas"],
+      results: "The Random Forest won decisively: 99.8% accuracy, 0.92 macro F1, and a 0.001 attack false-positive rate, meaning it almost never flags benign traffic. The CNN caught attacks but was noisy (~16% false positives); the Transformer failed to learn on this tabular, non-sequential data. The takeaway, reported plainly rather than hidden, is that a classical tree ensemble beats deep models on CIC-IDS2017 flow features — exactly the kind of negative result a benchmark exists to surface.",
+    },
+  },
+  {
     name: "RAGnosis — Chest X-Ray Triage Assistant",
+    status: "In progress",
     description:
       "A chest X-ray triage assistant pairing a multi-label DenseNet-121 classifier with retrieval-augmented report generation grounded in ACR and Fleischner Society clinical guidelines. AUC 0.84 on NIH ChestX-ray14.",
     tags: [

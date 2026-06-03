@@ -33,6 +33,7 @@ import project_diabetic_retinopathy from "./project6_diabetic_retinopathy.png";
 import project_knn_digits from "./project7_knn_digits.png";
 import project_naive_bayes from "./project8_naive_bayes.png";
 import project_ragnosis from "./project9_ragnosis.png";
+import project_cyber_intrusion from "./project10_cyber_intrusion.png";
 
 export {
   logo,
@@ -64,4 +65,5 @@ export {
   project_knn_digits,
   project_naive_bayes,
   project_ragnosis,
+  project_cyber_intrusion,
 };

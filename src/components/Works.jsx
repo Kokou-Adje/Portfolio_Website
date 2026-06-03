@@ -45,7 +45,14 @@ const ProjectModal = ({ project, onClose }) => {
         </div>
 
         {/* Title and tags */}
-        <h3 className='text-white font-bold text-[28px]'>{project.name}</h3>
+        <div className='flex items-center gap-3 flex-wrap'>
+          <h3 className='text-white font-bold text-[28px]'>{project.name}</h3>
+          {project.status && (
+            <span className='text-[12px] font-semibold uppercase tracking-wide px-3 py-1 rounded-full bg-[#b45309]/30 text-[#fbbf24] border border-[#fbbf24]/40'>
+              {project.status}
+            </span>
+          )}
+        </div>
         <div className='mt-2 flex flex-wrap gap-2'>
           {project.tags.map((tag) => (
             <span
@@ -133,12 +140,13 @@ const ProjectCard = ({
   source_code_link,
   live_demo_link,
   details,
+  status,
   onCardClick,
 }) => {
   return (
     <motion.div variants={fadeIn("up", "spring", index * 0.5, 0.75)}>
       <div
-        onClick={() => onCardClick({ name, description, tags, image, source_code_link, live_demo_link, details })}
+        onClick={() => onCardClick({ name, description, tags, image, source_code_link, live_demo_link, details, status })}
         className='cursor-pointer'
       >
         <Tilt
@@ -155,6 +163,12 @@ const ProjectCard = ({
             alt='project_image'
             className='w-full h-full object-cover rounded-2xl'
           />
+
+          {status && (
+            <div className='absolute top-3 left-3 text-[11px] font-semibold uppercase tracking-wide px-3 py-1 rounded-full bg-[#b45309]/80 text-white backdrop-blur-sm'>
+              {status}
+            </div>
+          )}
 
           <div className='absolute inset-0 flex justify-end m-3 card-img_hover'>
             <div
@@ -214,7 +228,7 @@ const Works = () => {
           variants={fadeIn("", "", 0.1, 1)}
           className='mt-3 text-secondary text-[17px] max-w-3xl leading-[30px]'
         >
-          Eight projects across computer vision, medical imaging, deep
+          Nine projects across computer vision, medical imaging, deep
           learning, and applied ML. Click any card for methodology, tools, and
           results.
         </motion.p>
